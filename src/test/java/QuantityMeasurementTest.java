@@ -12,4 +12,12 @@ public class QuantityMeasurementTest {
         double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
         Assert.assertEquals(result1, result2, 0.0);
     }
+
+    @Test
+    public void given24InchAnd1Feet_IfNotEqual_ShouldReturnFalse() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+        double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 24.0);
+        double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
+        Assert.assertNotEquals(result1, result2, 0.0);
+    }
 }
