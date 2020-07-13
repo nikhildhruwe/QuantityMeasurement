@@ -128,7 +128,8 @@ public class QuantityMeasurementTest {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
             double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, 3.0);
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
-            Assert.assertEquals(result1, result2, 0.0);
+            boolean compare = quantityMeasurement.compare(result1, result2);
+            Assert.assertTrue(compare);
         }catch (QuantityMeasurementException e){
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
@@ -141,7 +142,8 @@ public class QuantityMeasurementTest {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
             double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
-            Assert.assertNotEquals(result1, result2, 0.0);
+            boolean compare = quantityMeasurement.compare(result1, result2);
+            Assert.assertFalse(compare);
         }catch (QuantityMeasurementException e){
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
@@ -154,7 +156,8 @@ public class QuantityMeasurementTest {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
             double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 1.0);
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
-            Assert.assertNotEquals(result1, result2, 0.0);
+            boolean compare = quantityMeasurement.compare(result1, result2);
+            Assert.assertFalse(compare);
         }catch (QuantityMeasurementException e){
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
@@ -167,9 +170,11 @@ public class QuantityMeasurementTest {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
             double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 36.0);
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
-            Assert.assertEquals(result1, result2, 0.0);
+            boolean compare = quantityMeasurement.compare(result1, result2);
+            Assert.assertTrue(compare);
         }catch (QuantityMeasurementException e){
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
+
 }
