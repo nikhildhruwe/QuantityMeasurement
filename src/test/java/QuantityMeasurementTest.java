@@ -91,4 +91,12 @@ public class QuantityMeasurementTest {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NULL_VALUE);
         }
     }
+    //1.8
+    @Test
+    public void givenSameReference_IfProper_ShouldReturnTrue() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+        boolean equals = quantityMeasurement.equals(quantityMeasurement);
+        Assert.assertTrue(equals);
+    }
+
 }
