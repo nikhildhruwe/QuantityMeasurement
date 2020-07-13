@@ -160,4 +160,16 @@ public class QuantityMeasurementTest {
         }
     }
 
+    //2.4
+    @Test
+    public void given1YardAnd36Inch_ShouldReturnTrue() {
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 36.0);
+            double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
+            Assert.assertEquals(result1, result2, 0.0);
+        }catch (QuantityMeasurementException e){
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        }
+    }
 }
