@@ -1,11 +1,15 @@
 package com.bridgelabz.quantitymeasurement.services;
 
+import com.bridgelabz.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bridgelabz.quantitymeasurement.utility.UnitType;
 
 public class QuantityMeasurement {
     private double value;
 
-    public double calculateUnit(UnitType type, Double unit) {
+    public double calculateUnit(UnitType type, Double unit) throws QuantityMeasurementException {
+        if (unit == null)
+            throw new QuantityMeasurementException("Entered Null Value",
+                                                                QuantityMeasurementException.ExceptionType.NULL_VALUE);
         return unit * type.unitConversion;
     }
 
