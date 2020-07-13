@@ -123,7 +123,7 @@ public class QuantityMeasurementTest {
 
     //2.1 **** Yard comparison *****
     @Test
-    public void givenFeetAndYardValue_IfProper_ShouldReturnTrue() {
+    public void given3FeetAnd1YardValue_IfProper_ShouldReturnTrue() {
         try {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
             double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, 3.0);
@@ -168,6 +168,21 @@ public class QuantityMeasurementTest {
     public void given1YardAnd36Inch_ShouldReturnTrue() {
         try {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            double result1 = quantityMeasurement.calculateUnit(UnitType.YARD, 36.0);
+            double result2 = quantityMeasurement.calculateUnit(UnitType.INCH, 1.0);
+            boolean compare = quantityMeasurement.compare(result1, result2);
+            Assert.assertTrue(compare);
+        }catch (QuantityMeasurementException e){
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        }
+    }
+
+    //2.5
+
+    @Test
+    public void given36InchAnd1Yard_ShouldReturnTrue() {
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
             double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 36.0);
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
             boolean compare = quantityMeasurement.compare(result1, result2);
@@ -176,5 +191,4 @@ public class QuantityMeasurementTest {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
-
 }
