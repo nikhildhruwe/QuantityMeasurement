@@ -99,4 +99,25 @@ public class QuantityMeasurementTest {
         Assert.assertTrue(equals);
     }
 
+    //1.9
+    @Test
+    public void givenSameType_IfNotProper_ShouldReturnFalse() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+        boolean equals = quantityMeasurement.equals(new QuantityMeasurementException("NULL",
+                QuantityMeasurementException.ExceptionType.NULL_VALUE));
+        Assert.assertFalse(equals);
+    }
+
+    //1.10
+    @Test
+    public void givenInchAndFeetValue_IfProper_ShouldReturnTrue() {
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 2.0);
+            double result2 = quantityMeasurement.calculateUnit(UnitType.INCH, 2.0);
+            Assert.assertEquals(result1, result2, 0.0);
+        }catch (QuantityMeasurementException e){
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        }
+    }
 }
