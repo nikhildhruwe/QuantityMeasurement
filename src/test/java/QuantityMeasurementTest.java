@@ -120,4 +120,17 @@ public class QuantityMeasurementTest {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
+
+    //2.1 **** Yard comparison *****
+    @Test
+    public void givenFeetAndYardValue_IfProper_ShouldReturnTrue() {
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, 3.0);
+            double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
+            Assert.assertEquals(result1, result2, 0.0);
+        }catch (QuantityMeasurementException e){
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        }
+    }
 }
