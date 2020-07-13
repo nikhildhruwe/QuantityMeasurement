@@ -22,12 +22,23 @@ public class QuantityMeasurementTest {
 
     }
 
+    //1.1
     @Test
     public void given0FeetAnd0Feet_ShouldReturnEqual() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
         double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, 0.0);
         double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 0.0);
         boolean compare = quantityMeasurement.compare(result1,result2);
+        Assert.assertTrue(compare);
+    }
+
+    //1.2
+    @Test
+    public void givenNullValue_ShouldThrowException() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+        double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, null);
+        double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, null);
+        boolean compare = quantityMeasurement.compare(result1, result2);
         Assert.assertTrue(compare);
     }
 }
