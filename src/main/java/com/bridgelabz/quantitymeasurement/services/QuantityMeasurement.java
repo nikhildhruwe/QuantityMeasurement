@@ -10,6 +10,10 @@ public class QuantityMeasurement {
         if (unit == null)
             throw new QuantityMeasurementException("Entered Null Value",
                                                                 QuantityMeasurementException.ExceptionType.NULL_VALUE);
+        if (unit < 0)
+            throw new QuantityMeasurementException("Entered Negative Value",
+                                                          QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+
         return unit * type.unitConversion;
     }
 

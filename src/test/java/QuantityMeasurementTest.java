@@ -48,7 +48,6 @@ public class QuantityMeasurementTest {
     }
 
     //1.4
-
 //    @Test
 //    public void givenQuantityMeasurementType_IfProper_ShouldReturnTrue() {
 //        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
@@ -57,6 +56,7 @@ public class QuantityMeasurementTest {
 //        Assert.assertTrue(equals);
 //    }
 
+    //1.4
     @Test
     public void givenQuantityMeasurementType_IfNotProper_ShouldReturnFalse() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
@@ -68,9 +68,13 @@ public class QuantityMeasurementTest {
     //1.5
     @Test
     public void given12InchAnd1Feet_IfEqual_ShouldReturnTrue() throws QuantityMeasurementException {
-        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
-        double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 12.0);
-        double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
-        Assert.assertEquals(result1, result2, 0.0);
+       try {
+           QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+           double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 1.0);
+           double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
+           Assert.assertEquals(result1, result2, 0.0);
+       }catch (QuantityMeasurementException e){
+           Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+       }
     }
 }
