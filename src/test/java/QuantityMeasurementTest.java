@@ -178,13 +178,26 @@ public class QuantityMeasurementTest {
     }
 
     //2.5
-
     @Test
     public void given36InchAnd1Yard_ShouldReturnTrue() {
         try {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
             double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 36.0);
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
+            boolean compare = quantityMeasurement.compare(result1, result2);
+            Assert.assertTrue(compare);
+        }catch (QuantityMeasurementException e){
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        }
+    }
+
+    //2.6
+    @Test
+    public void given1YardAnd3Feet_ShouldReturnTrue() {
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            double result1 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
+            double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 3.0);
             boolean compare = quantityMeasurement.compare(result1, result2);
             Assert.assertTrue(compare);
         }catch (QuantityMeasurementException e){
