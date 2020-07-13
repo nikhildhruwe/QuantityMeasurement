@@ -67,12 +67,13 @@ public class QuantityMeasurementTest {
 
     //1.5
     @Test
-    public void given12InchAnd1Feet_IfEqual_ShouldReturnTrue() throws QuantityMeasurementException {
+    public void givenFeet_IfEqual_ShouldReturnTrue() throws QuantityMeasurementException {
         try {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
-            double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 1.0);
+            double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
             double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
-            Assert.assertEquals(result1, result2, 0.0);
+            boolean compare = quantityMeasurement.compare(result1, result2);
+            Assert.assertTrue(compare);
         } catch (QuantityMeasurementException e) {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
@@ -91,6 +92,7 @@ public class QuantityMeasurementTest {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NULL_VALUE);
         }
     }
+
     //1.8
     @Test
     public void givenSameReference_IfProper_ShouldReturnTrue() {
@@ -110,13 +112,14 @@ public class QuantityMeasurementTest {
 
     //1.10
     @Test
-    public void givenInchAndFeetValue_IfProper_ShouldReturnTrue() {
+    public void givenInchValue_IfProper_ShouldReturnTrue() {
         try {
             QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
             double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 2.0);
             double result2 = quantityMeasurement.calculateUnit(UnitType.INCH, 2.0);
-            Assert.assertEquals(result1, result2, 0.0);
-        }catch (QuantityMeasurementException e){
+            boolean compare = quantityMeasurement.compare(result1, result2);
+            Assert.assertTrue(compare);
+        } catch (QuantityMeasurementException e) {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
@@ -130,7 +133,7 @@ public class QuantityMeasurementTest {
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
             boolean compare = quantityMeasurement.compare(result1, result2);
             Assert.assertTrue(compare);
-        }catch (QuantityMeasurementException e){
+        } catch (QuantityMeasurementException e) {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
@@ -144,7 +147,7 @@ public class QuantityMeasurementTest {
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
             boolean compare = quantityMeasurement.compare(result1, result2);
             Assert.assertFalse(compare);
-        }catch (QuantityMeasurementException e){
+        } catch (QuantityMeasurementException e) {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
@@ -158,7 +161,7 @@ public class QuantityMeasurementTest {
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
             boolean compare = quantityMeasurement.compare(result1, result2);
             Assert.assertFalse(compare);
-        }catch (QuantityMeasurementException e){
+        } catch (QuantityMeasurementException e) {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
@@ -172,7 +175,7 @@ public class QuantityMeasurementTest {
             double result2 = quantityMeasurement.calculateUnit(UnitType.INCH, 1.0);
             boolean compare = quantityMeasurement.compare(result1, result2);
             Assert.assertTrue(compare);
-        }catch (QuantityMeasurementException e){
+        } catch (QuantityMeasurementException e) {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
@@ -186,7 +189,7 @@ public class QuantityMeasurementTest {
             double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
             boolean compare = quantityMeasurement.compare(result1, result2);
             Assert.assertTrue(compare);
-        }catch (QuantityMeasurementException e){
+        } catch (QuantityMeasurementException e) {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
@@ -200,7 +203,7 @@ public class QuantityMeasurementTest {
             double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 3.0);
             boolean compare = quantityMeasurement.compare(result1, result2);
             Assert.assertTrue(compare);
-        }catch (QuantityMeasurementException e){
+        } catch (QuantityMeasurementException e) {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
