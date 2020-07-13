@@ -133,4 +133,31 @@ public class QuantityMeasurementTest {
             Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         }
     }
+
+    //2.2
+    @Test
+    public void given1FeetAnd1Yard_ShouldReturnFalse() {
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
+            double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
+            Assert.assertNotEquals(result1, result2, 0.0);
+        }catch (QuantityMeasurementException e){
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        }
+    }
+
+    //2.3
+    @Test
+    public void given1InchAnd1Yard_ShouldReturnFalse() {
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 1.0);
+            double result2 = quantityMeasurement.calculateUnit(UnitType.YARD, 1.0);
+            Assert.assertNotEquals(result1, result2, 0.0);
+        }catch (QuantityMeasurementException e){
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        }
+    }
+
 }
