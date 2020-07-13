@@ -21,7 +21,7 @@ public class QuantityMeasurementTest {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
         double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, 0.0);
         double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 0.0);
-        boolean compare = quantityMeasurement.compare(result1,result2);
+        boolean compare = quantityMeasurement.compare(result1, result2);
         Assert.assertTrue(compare);
     }
 
@@ -29,14 +29,14 @@ public class QuantityMeasurementTest {
     @Test
     public void givenNullValue_ShouldThrowException() {
         try {
-           QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
-           quantityMeasurement.calculateUnit(UnitType.FEET, null);
-           quantityMeasurement.calculateUnit(UnitType.FEET, null);
-           ExpectedException exceptionRule = ExpectedException.none();
-           exceptionRule.expect(QuantityMeasurementException.class);
-       }catch (QuantityMeasurementException e){
-           Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NULL_VALUE);
-       }
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            quantityMeasurement.calculateUnit(UnitType.FEET, null);
+            quantityMeasurement.calculateUnit(UnitType.FEET, null);
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(QuantityMeasurementException.class);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NULL_VALUE);
+        }
     }
 
     //1.3
@@ -61,20 +61,34 @@ public class QuantityMeasurementTest {
     public void givenQuantityMeasurementType_IfNotProper_ShouldReturnFalse() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
         boolean equals = quantityMeasurement.equals(new QuantityMeasurementException("NULL",
-                                                            QuantityMeasurementException.ExceptionType.NULL_VALUE));
+                QuantityMeasurementException.ExceptionType.NULL_VALUE));
         Assert.assertFalse(equals);
     }
 
     //1.5
     @Test
     public void given12InchAnd1Feet_IfEqual_ShouldReturnTrue() throws QuantityMeasurementException {
-       try {
-           QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
-           double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 1.0);
-           double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
-           Assert.assertEquals(result1, result2, 0.0);
-       }catch (QuantityMeasurementException e){
-           Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
-       }
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 1.0);
+            double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
+            Assert.assertEquals(result1, result2, 0.0);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        }
+    }
+
+    //1.7 ***** INCH *****
+    @Test
+    public void givenNullForInch_ShouldThrowException() {
+        try {
+            QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+            quantityMeasurement.calculateUnit(UnitType.INCH, null);
+            quantityMeasurement.calculateUnit(UnitType.INCH, null);
+            ExpectedException exceptionRule = ExpectedException.none();
+            exceptionRule.expect(QuantityMeasurementException.class);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NULL_VALUE);
+        }
     }
 }
