@@ -64,4 +64,13 @@ public class QuantityMeasurementTest {
                                                             QuantityMeasurementException.ExceptionType.NULL_VALUE));
         Assert.assertFalse(equals);
     }
+
+    //1.5
+    @Test
+    public void given12InchAnd1Feet_IfEqual_ShouldReturnTrue() throws QuantityMeasurementException {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+        double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 12.0);
+        double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
+        Assert.assertEquals(result1, result2, 0.0);
+    }
 }
