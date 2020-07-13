@@ -16,8 +16,18 @@ public class QuantityMeasurementTest {
     @Test
     public void given24InchAnd1Feet_IfNotEqual_ShouldReturnFalse() {
         QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
-        double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 24.0);
+        double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 12.0);
         double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 1.0);
         Assert.assertNotEquals(result1, result2, 0.0);
+
+    }
+
+    @Test
+    public void given0FeetAnd0Feet_ShouldReturnEqual() {
+        QuantityMeasurement quantityMeasurement = new QuantityMeasurement();
+        double result1 = quantityMeasurement.calculateUnit(UnitType.FEET, 0.0);
+        double result2 = quantityMeasurement.calculateUnit(UnitType.FEET, 0.0);
+        boolean compare = quantityMeasurement.compare(result1,result2);
+        Assert.assertTrue(compare);
     }
 }
