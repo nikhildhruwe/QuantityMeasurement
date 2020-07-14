@@ -162,4 +162,13 @@ public class QuantityMeasurementTest {
         boolean equals = inch1.equals(inch2);
         Assert.assertTrue(equals);
     }
+
+    //3.0
+    @Test
+    public void given5CentimeterAnd2InchValue_ShouldReturnTrue() throws QuantityMeasurementException {
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, 2.0);
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.CENTIMETER, 5.0);
+        boolean equals = inch1.equals(inch2);
+        Assert.assertTrue(equals);
+    }
 }
