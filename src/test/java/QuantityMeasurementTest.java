@@ -6,6 +6,19 @@ import org.junit.Test;
 
 public class QuantityMeasurementTest {
 
+    // Negative Value Check
+    @Test
+    public void givenNegativeValue_ShouldThrowException(){
+        try {
+            QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, -12.0);
+            QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.FEET, 1.0);
+            boolean compare = inch1.equals(inch2);
+            Assert.assertTrue(compare);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+            System.out.println(e.getMessage());
+        }
+    }
     //1.1
     @Test
     public void given0FeetAnd0Feet_ShouldReturnEqual() throws QuantityMeasurementException {
@@ -20,7 +33,7 @@ public class QuantityMeasurementTest {
     public void givenNullValue_ShouldThrowException() {
         try {
             QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 0.0);
-            QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.FEET, 0.0);
+            QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.FEET, null);
             Assert.assertNotEquals(inch1, inch2);
         } catch (QuantityMeasurementException e) {
             e.printStackTrace();
@@ -163,11 +176,20 @@ public class QuantityMeasurementTest {
         Assert.assertTrue(equals);
     }
 
-    //3.0
+    //3.1
     @Test
     public void given5CentimeterAnd2InchValue_ShouldReturnTrue() throws QuantityMeasurementException {
         QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, 2.0);
         QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.CENTIMETER, 5.0);
+        boolean equals = inch1.equals(inch2);
+        Assert.assertTrue(equals);
+    }
+
+    //3.2
+    @Test
+    public void given30CentimeterAnd1FeetValue_ShouldReturnTrue() throws QuantityMeasurementException {
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.FEET, 1.0);
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.CENTIMETER, 30.0);
         boolean equals = inch1.equals(inch2);
         Assert.assertTrue(equals);
     }
