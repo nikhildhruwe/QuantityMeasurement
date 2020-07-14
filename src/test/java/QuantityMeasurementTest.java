@@ -112,12 +112,13 @@ public class QuantityMeasurementTest {
     //2.1 **** Yard comparison *****
     @Test
     public void given3FeetAnd1YardValue_IfProper_ShouldReturnTrue() throws QuantityMeasurementException {
-            QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 3.0);
-            QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.YARD, 1.0);
-            boolean equals = inch1.equals(inch2);
-            Assert.assertTrue(equals);
-        }
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 3.0);
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.YARD, 1.0);
+        boolean equals = inch1.equals(inch2);
+        Assert.assertTrue(equals);
+    }
 
+    //2.2
     @Test
     public void given1FeetAnd1YardValue_ShouldReturnFalse() throws QuantityMeasurementException {
         QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 1.0);
@@ -126,4 +127,39 @@ public class QuantityMeasurementTest {
         Assert.assertFalse(equals);
     }
 
+    //2.3
+    @Test
+    public void given1InchAnd1YardValue_ShouldReturnFalse() throws QuantityMeasurementException {
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 1.0);
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.YARD, 1.0);
+        boolean equals = inch1.equals(inch2);
+        Assert.assertFalse(equals);
+    }
+
+    //2.4
+    @Test
+    public void given1YardAnd36InchValue_ShouldReturnTrue() throws QuantityMeasurementException {
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.YARD, 1.0);
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 36.0);
+        boolean equals = inch1.equals(inch2);
+        Assert.assertTrue(equals);
+    }
+
+    //2.5
+    @Test
+    public void given36InchAnd1YardValue_ShouldReturnTrue() throws QuantityMeasurementException {
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 36.0);
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.YARD, 1.0);
+        boolean equals = inch1.equals(inch2);
+        Assert.assertTrue(equals);
+    }
+
+    //2.6
+    @Test
+    public void given1YardAnd3FeetValue_ShouldReturnTrue() throws QuantityMeasurementException {
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.YARD, 1.0);
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 3.0);
+        boolean equals = inch1.equals(inch2);
+        Assert.assertTrue(equals);
+    }
 }
