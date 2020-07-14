@@ -3,22 +3,22 @@ package com.bridgelabz.quantitymeasurement.services;
 import com.bridgelabz.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bridgelabz.quantitymeasurement.utility.UnitType;
 
+import java.util.Objects;
+
 public class QuantityMeasurement {
+    private final UnitType type;
     private double value;
 
-    public double calculateUnit(UnitType type, Double unit) throws QuantityMeasurementException {
-        if (unit == null)
+    public QuantityMeasurement(UnitType type, Double value) throws QuantityMeasurementException {
+        if (value == null)
             throw new QuantityMeasurementException("Entered Null Value",
-                                                                QuantityMeasurementException.ExceptionType.NULL_VALUE);
-        if (unit < 0)
+                    QuantityMeasurementException.ExceptionType.NULL_VALUE);
+        if (value < 0)
             throw new QuantityMeasurementException("Entered Negative Value",
-                                                          QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+                    QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        this.type = type;
+        this.value = value * type.unitConversion;
 
-        return unit * type.unitConversion;
-    }
-
-    public boolean compare(double value1, double value2) {
-        return value1 == value2;
     }
 
     @Override
@@ -26,7 +26,7 @@ public class QuantityMeasurement {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         QuantityMeasurement that = (QuantityMeasurement) o;
-        return Double.compare(that.value, value) == 0;
+        return Double.compare(that.value, value) == 0 &&
+                type == that.type;
     }
-
 }
