@@ -20,8 +20,8 @@ public class QuantityMeasurementTest {
     public void givenNullValue_ShouldThrowException() {
         try {
             QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 0.0);
-            QuantityMeasurement inch2 = null;
-            Assert.assertNotEquals(inch1,inch2);
+            QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.FEET, 0.0);
+            Assert.assertNotEquals(inch1, inch2);
         } catch (QuantityMeasurementException e) {
             e.printStackTrace();
         }
@@ -60,47 +60,54 @@ public class QuantityMeasurementTest {
     //1.7 ***** INCH *****
     @Test
     public void given0InchAnd0Inch_IfProper_ShouldReturnTrue() throws QuantityMeasurementException {
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 0.0);
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, 0.0);
+        boolean equals = inch1.equals(inch2);
+        Assert.assertTrue(equals);
+    }
+
+    //1.8
+    @Test
+    public void givenNullForInch_ShouldThrowException() {
+        try {
             QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 0.0);
-            QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, 0.0);
+            QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, null);
+            inch1.equals(inch2);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NULL_VALUE);
+            System.out.println(e.getMessage());
+        }
+    }
+
+    //1.9
+    @Test
+    public void givenReferenceType_IfProper_ShouldReturnTrue() throws QuantityMeasurementException {
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 0.0);
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, 0.0);
+        boolean equals = inch1.equals(inch2);
+        Assert.assertTrue(equals);
+    }
+
+    //1.10
+    @Test
+    public void givenSameType_IfNotProper_ShouldReturnFalse() throws QuantityMeasurementException {
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 0.0);
+        boolean equals = inch1.equals(UnitType.INCH);
+        Assert.assertFalse(equals);
+    }
+
+    //1.11
+    @Test
+    public void givenInchValueAndFeetValue_IfProper_ShouldReturnTrue() {
+        try {
+            QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 2.0);
+            QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, 24.0);
             boolean equals = inch1.equals(inch2);
             Assert.assertTrue(equals);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        }
     }
-//
-//@Test
-//public void givenNullForInch_ShouldThrowException() {
-//    try {
-//        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 0.0);
-//        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, 0.0);
-//    } catch (QuantityMeasurementException e) {
-//        Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NULL_VALUE);
-//    }
-//}
-//    //1.8
-//    @Test
-//    public void givenSameReference_IfProper_ShouldReturnTrue() {
-//        boolean equals = quantityMeasurement.equals(quantityMeasurement);
-//        Assert.assertTrue(equals);
-//    }
-//
-//    //1.9
-//    @Test
-//    public void givenSameType_IfNotProper_ShouldReturnFalse() {
-//        boolean equals = quantityMeasurement.equals(UnitType.FEET);
-//        Assert.assertFalse(equals);
-//    }
-//
-//    //1.10
-//    @Test
-//    public void givenInchValue_IfProper_ShouldReturnTrue() {
-//        try {
-//            double result1 = quantityMeasurement.calculateUnit(UnitType.INCH, 2.0);
-//            double result2 = quantityMeasurement.calculateUnit(UnitType.INCH, 2.0);
-//            boolean compare = quantityMeasurement.compare(result1, result2);
-//            Assert.assertTrue(compare);
-//        } catch (QuantityMeasurementException e) {
-//            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
-//        }
-//    }
 //
 //    //2.1 **** Yard comparison *****
 //    @Test
