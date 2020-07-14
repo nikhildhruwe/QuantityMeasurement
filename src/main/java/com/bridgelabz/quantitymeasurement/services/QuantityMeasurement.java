@@ -3,11 +3,10 @@ package com.bridgelabz.quantitymeasurement.services;
 import com.bridgelabz.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bridgelabz.quantitymeasurement.utility.UnitType;
 
-import java.util.Objects;
 
 public class QuantityMeasurement {
     private final UnitType type;
-    private double value;
+    private final double value;
 
     public QuantityMeasurement(UnitType type, Double value) throws QuantityMeasurementException {
         if (value == null)
@@ -26,7 +25,6 @@ public class QuantityMeasurement {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         QuantityMeasurement that = (QuantityMeasurement) o;
-        return Double.compare(that.value, value) == 0 &&
-                type == that.type;
+        return Double.compare(that.value, value) == 0;
     }
 }
