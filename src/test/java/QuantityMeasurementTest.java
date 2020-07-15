@@ -326,4 +326,12 @@ public class QuantityMeasurementTest {
         double result = tonne.addition(gram);
         Assert.assertEquals(1001, result, 0.0);
     }
+
+    //8
+    @Test
+    public void givenTemperatureInCelsiusAndFahrenheit_WhenProper_ShouldBeEqual() throws QuantityMeasurementException {
+        QuantityMeasurement fahrenheit = new QuantityMeasurement(UnitType.FAHRENHEIT, 212.0);
+        QuantityMeasurement celsius = new QuantityMeasurement(UnitType.CELSIUS, 100.0);
+        Assert.assertEquals(fahrenheit, celsius);
+    }
 }
