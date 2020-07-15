@@ -317,4 +317,13 @@ public class QuantityMeasurementTest {
         QuantityMeasurement kg = new QuantityMeasurement(UnitType.KG, 1000.0);
         Assert.assertEquals(tonne, kg);
     }
+
+    //7.3
+    @Test
+    public void givenWeightInTonneAndGram_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
+        QuantityMeasurement tonne = new QuantityMeasurement(UnitType.TONNE, 1.0);
+        QuantityMeasurement gram = new QuantityMeasurement(UnitType.GRAM, 1000.0);
+        double result = tonne.addition(gram);
+        Assert.assertEquals(1001, result, 0.0);
+    }
 }
