@@ -259,4 +259,12 @@ public class QuantityMeasurementTest {
         Assert.assertEquals( 24, addition , 0.0);
     }
 
+    //4.4
+    @Test
+    public void givenValuesInInchAnd2Centimeter_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
+        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 2.0);
+        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.CENTIMETER, 2.5);
+        double addition = inch1.addition(inch2);
+        Assert.assertEquals( 3, addition , 0.0);
+    }
 }
