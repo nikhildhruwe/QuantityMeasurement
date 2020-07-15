@@ -5,7 +5,6 @@ import com.bridgelabz.quantitymeasurement.utility.UnitType;
 
 
 public class QuantityMeasurement {
-
     private double value;
 
     public QuantityMeasurement(UnitType type, Double value) throws QuantityMeasurementException {
@@ -16,10 +15,13 @@ public class QuantityMeasurement {
             throw new QuantityMeasurementException("Entered Negative Value",
                     QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         this.value = value * type.unitConversion;
-
     }
 
     public QuantityMeasurement() {
+    }
+
+    public double addition(QuantityMeasurement that) {
+        return this.value + that.value;
     }
 
     @Override
