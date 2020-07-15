@@ -232,14 +232,14 @@ public class QuantityMeasurementTest {
         boolean equals = yard.equals(centimeter);
         Assert.assertFalse(equals);
     }
-    
+
     //4.1
     @Test
     public void given2InchAnd2Inch_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
         QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 2.0);
         QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, 2.0);
         double addition = inch1.addition(inch2);
-        Assert.assertEquals( 4, addition , 0.0);
+        Assert.assertEquals(4, addition, 0.0);
     }
 
     //4.2
@@ -248,7 +248,7 @@ public class QuantityMeasurementTest {
         QuantityMeasurement feet = new QuantityMeasurement(UnitType.FEET, 1.0);
         QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 2.0);
         double addition = feet.addition(inch);
-        Assert.assertEquals( 14, addition , 0.0);
+        Assert.assertEquals(14, addition, 0.0);
     }
 
     //4.3
@@ -257,7 +257,7 @@ public class QuantityMeasurementTest {
         QuantityMeasurement feet1 = new QuantityMeasurement(UnitType.FEET, 1.0);
         QuantityMeasurement feet2 = new QuantityMeasurement(UnitType.FEET, 1.0);
         double addition = feet1.addition(feet2);
-        Assert.assertEquals( 24, addition , 0.0);
+        Assert.assertEquals(24, addition, 0.0);
     }
 
     //4.4
@@ -266,14 +266,23 @@ public class QuantityMeasurementTest {
         QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 2.0);
         QuantityMeasurement centimeter = new QuantityMeasurement(UnitType.CENTIMETER, 2.5);
         double addition = inch.addition(centimeter);
-        Assert.assertEquals( 3, addition , 0.0);
+        Assert.assertEquals(3, addition, 0.0);
     }
-    
+
     //5.1
     @Test
-    public void givenGallonAndLitresVolume_WhenPoper_ShouldBeEqual() throws QuantityMeasurementException {
+    public void givenGallonAndLitresVolume_WhenProper_ShouldBeEqual() throws QuantityMeasurementException {
         QuantityMeasurement gallon = new QuantityMeasurement(UnitType.GALLON, 1.0);
         QuantityMeasurement litre = new QuantityMeasurement(UnitType.LITRE, 3.78);
         Assert.assertEquals(gallon, litre);
     }
+
+    //5.2
+    @Test
+    public void givenVolumesInLitresAndMillilitre_WhenProper_ShouldBeEqual() throws QuantityMeasurementException {
+        QuantityMeasurement litre = new QuantityMeasurement(UnitType.LITRE, 1.0);
+        QuantityMeasurement ml = new QuantityMeasurement(UnitType.ML, 1000.0);
+        Assert.assertEquals(litre, ml);
+    }
+
 }
