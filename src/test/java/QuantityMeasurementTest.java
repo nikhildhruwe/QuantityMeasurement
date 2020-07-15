@@ -1,7 +1,6 @@
 import com.bridgelabz.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bridgelabz.quantitymeasurement.services.QuantityMeasurement;
 import com.bridgelabz.quantitymeasurement.utility.UnitType;
-import com.bridgelabz.quantitymeasurement.utility.VolumeType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -283,6 +282,15 @@ public class QuantityMeasurementTest {
         QuantityMeasurement litre = new QuantityMeasurement(UnitType.LITRE, 1.0);
         QuantityMeasurement ml = new QuantityMeasurement(UnitType.ML, 1000.0);
         Assert.assertEquals(litre, ml);
+    }
+
+    //6.1
+    @Test
+    public void givenVolumesInGallonsAndLitres_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
+        QuantityMeasurement gallon = new QuantityMeasurement(UnitType.GALLON, 1.0);
+        QuantityMeasurement litre = new QuantityMeasurement(UnitType.LITRE, 3.78);
+        double result = gallon.addition(litre);
+        Assert.assertEquals(7.56, result, 0.0);
     }
 
 }
