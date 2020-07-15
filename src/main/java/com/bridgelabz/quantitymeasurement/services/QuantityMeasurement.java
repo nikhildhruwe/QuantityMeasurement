@@ -5,8 +5,8 @@ import com.bridgelabz.quantitymeasurement.utility.UnitType;
 
 
 public class QuantityMeasurement {
-    private final UnitType type;
-    private final double value;
+
+    private double value;
 
     public QuantityMeasurement(UnitType type, Double value) throws QuantityMeasurementException {
         if (value == null)
@@ -15,9 +15,11 @@ public class QuantityMeasurement {
         if (value < 0)
             throw new QuantityMeasurementException("Entered Negative Value",
                     QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
-        this.type = type;
         this.value = value * type.unitConversion;
 
+    }
+
+    public QuantityMeasurement() {
     }
 
     @Override
