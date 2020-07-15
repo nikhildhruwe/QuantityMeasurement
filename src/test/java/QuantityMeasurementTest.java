@@ -301,4 +301,12 @@ public class QuantityMeasurementTest {
         double result = litre.addition(ml);
         Assert.assertEquals(2, result, 0.0);
     }
+
+    //7.1
+    @Test
+    public void givenWeightInKGAndGram_WhenProper_ShouldBeEqual() throws QuantityMeasurementException {
+        QuantityMeasurement kg = new QuantityMeasurement(UnitType.KG, 1.0);
+        QuantityMeasurement tonne = new QuantityMeasurement(UnitType.GRAM, 1000.0);
+        Assert.assertEquals(kg, tonne);
+    }
 }
