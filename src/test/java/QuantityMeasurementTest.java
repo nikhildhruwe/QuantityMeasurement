@@ -53,8 +53,9 @@ public class QuantityMeasurementTest {
     //1.4
     @Test
     public void givenDifferentType_ShouldReturnFalse() throws QuantityMeasurementException {
-        QuantityMeasurement inch1 = new QuantityMeasurement(Unit.FEET, 0.0);
-        boolean equals = inch1.equals(Unit.FEET);
+        QuantityMeasurement feet = new QuantityMeasurement(Unit.FEET, 0.0);
+        QuantityMeasurement kg = new QuantityMeasurement(Unit.KG, 1.0);
+        boolean equals = feet.equals(kg);
         Assert.assertFalse(equals);
     }
 
@@ -96,15 +97,15 @@ public class QuantityMeasurementTest {
     //1.9
     @Test
     public void givenReferenceType_IfProper_ShouldReturnTrue() throws QuantityMeasurementException {
-        QuantityMeasurement inch1 = new QuantityMeasurement(Unit.INCH, 0.0);
+        QuantityMeasurement inch1 = new QuantityMeasurement(Unit.INCH, 1.0);
         QuantityMeasurement inch2 = new QuantityMeasurement();
         boolean equals = inch1.equals(inch2);
-        Assert.assertTrue(equals);
+        Assert.assertFalse(equals);
     }
 
     //1.10
     @Test
-    public void givenSameType_IfNotProper_ShouldReturnFalse() throws QuantityMeasurementException {
+    public void givenObjectType_IfNotProper_ShouldReturnFalse() throws QuantityMeasurementException {
         QuantityMeasurement inch = new QuantityMeasurement(Unit.INCH, 0.0);
         boolean equals = inch.equals(Unit.INCH);
         Assert.assertFalse(equals);

@@ -11,7 +11,7 @@ public class QuantityMeasurement {
     private double value;
 
     /**
-     *
+     * Parameterised constructor to initialise unit type and value.
      * @param unit
      * @param value
      * @throws QuantityMeasurementException
