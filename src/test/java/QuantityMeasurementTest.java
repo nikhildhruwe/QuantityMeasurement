@@ -309,4 +309,12 @@ public class QuantityMeasurementTest {
         QuantityMeasurement tonne = new QuantityMeasurement(UnitType.GRAM, 1000.0);
         Assert.assertEquals(kg, tonne);
     }
+
+    //7.2
+    @Test
+    public void givenWeightInTonneAndKG_WhenProper_ShouldBeEqual() throws QuantityMeasurementException {
+        QuantityMeasurement tonne = new QuantityMeasurement(UnitType.TONNE, 1.0);
+        QuantityMeasurement kg = new QuantityMeasurement(UnitType.KG, 1000.0);
+        Assert.assertEquals(tonne, kg);
+    }
 }
