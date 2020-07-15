@@ -1,6 +1,7 @@
 import com.bridgelabz.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bridgelabz.quantitymeasurement.services.QuantityMeasurement;
 import com.bridgelabz.quantitymeasurement.utility.UnitType;
+import com.bridgelabz.quantitymeasurement.utility.VolumeType;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -244,27 +245,35 @@ public class QuantityMeasurementTest {
     //4.2
     @Test
     public void given1FeetAnd2Inch_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
-        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 1.0);
-        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.INCH, 2.0);
-        double addition = inch1.addition(inch2);
+        QuantityMeasurement feet = new QuantityMeasurement(UnitType.FEET, 1.0);
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 2.0);
+        double addition = feet.addition(inch);
         Assert.assertEquals( 14, addition , 0.0);
     }
 
     //4.3
     @Test
     public void given1FeetAnd1Feet_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
-        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.FEET, 1.0);
-        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.FEET, 1.0);
-        double addition = inch1.addition(inch2);
+        QuantityMeasurement feet1 = new QuantityMeasurement(UnitType.FEET, 1.0);
+        QuantityMeasurement feet2 = new QuantityMeasurement(UnitType.FEET, 1.0);
+        double addition = feet1.addition(feet2);
         Assert.assertEquals( 24, addition , 0.0);
     }
 
     //4.4
     @Test
     public void givenValuesInInchAnd2Centimeter_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
-        QuantityMeasurement inch1 = new QuantityMeasurement(UnitType.INCH, 2.0);
-        QuantityMeasurement inch2 = new QuantityMeasurement(UnitType.CENTIMETER, 2.5);
-        double addition = inch1.addition(inch2);
+        QuantityMeasurement inch = new QuantityMeasurement(UnitType.INCH, 2.0);
+        QuantityMeasurement centimeter = new QuantityMeasurement(UnitType.CENTIMETER, 2.5);
+        double addition = inch.addition(centimeter);
         Assert.assertEquals( 3, addition , 0.0);
+    }
+    
+    //5.1
+    @Test
+    public void givenGallonAndLitresVolume_WhenPoper_ShouldBeEqual() throws QuantityMeasurementException {
+        QuantityMeasurement gallon = new QuantityMeasurement(UnitType.GALLON, 1.0);
+        QuantityMeasurement litre = new QuantityMeasurement(UnitType.LITRE, 3.78);
+        Assert.assertEquals(gallon, litre);
     }
 }
