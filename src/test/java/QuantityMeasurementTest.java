@@ -293,4 +293,12 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(7.56, result, 0.0);
     }
 
+    //6.2
+    @Test
+    public void givenVolumesInLitresAndMillilitres_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
+        QuantityMeasurement litre = new QuantityMeasurement(UnitType.LITRE, 1.0);
+        QuantityMeasurement ml = new QuantityMeasurement(UnitType.ML, 1000.0);
+        double result = litre.addition(ml);
+        Assert.assertEquals(2, result, 0.0);
+    }
 }
