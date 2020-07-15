@@ -3,10 +3,19 @@ package com.bridgelabz.quantitymeasurement.services;
 import com.bridgelabz.quantitymeasurement.exception.QuantityMeasurementException;
 import com.bridgelabz.quantitymeasurement.utility.Unit;
 
+import java.util.Objects;
+
 
 public class QuantityMeasurement {
+    private Unit unit;
     private double value;
 
+    /**
+     *
+     * @param unit
+     * @param value
+     * @throws QuantityMeasurementException
+     */
     public QuantityMeasurement(Unit unit, Double value) throws QuantityMeasurementException {
         if (value == null)
             throw new QuantityMeasurementException("Entered Null Value",
@@ -14,20 +23,28 @@ public class QuantityMeasurement {
         if (value < 0)
             throw new QuantityMeasurementException("Entered Negative Value",
                     QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
+        this.unit = unit;
         if (unit.equals(Unit.FAHRENHEIT))
+
             this.value = (value - unit.unitConversion) * 5 / 9;
         else
             this.value = value * unit.unitConversion;
     }
 
-//    public boolean compare(double value1, double value2) {
-//        return Double.compare(value1, value2) == 0;
-//    }
     public QuantityMeasurement() {
     }
 
-    public double addition(QuantityMeasurement that) {
-        return this.value + that.value;
+    /**
+     * Method for addition of two quantities
+     * @return result in double
+     * @throws QuantityMeasurementException
+     */
+    public double addition(QuantityMeasurement that) throws QuantityMeasurementException {
+        if (this.unit.type.equals(that.unit.type))
+            return this.value + that.value;
+        else
+            throw new QuantityMeasurementException("Different measurement types"
+                                                        , QuantityMeasurementException.ExceptionType.INVALID_UNIT_TYPE);
     }
 
     @Override
@@ -35,6 +52,7 @@ public class QuantityMeasurement {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         QuantityMeasurement that = (QuantityMeasurement) o;
-        return Double.compare(that.value, value) == 0;
+        return Double.compare(that.value, value) == 0 &&
+                unit.type == that.unit.type;
     }
 }

@@ -334,4 +334,17 @@ public class QuantityMeasurementTest {
         QuantityMeasurement celsius = new QuantityMeasurement(Unit.CELSIUS, 100.0);
         Assert.assertEquals(fahrenheit, celsius);
     }
+
+    @Test
+    public void given1LitreAnd1Kg_WhenAdded_ShouldThrowException(){
+       try {
+           QuantityMeasurement litre = new QuantityMeasurement(Unit.LITRE, 1.0);
+           QuantityMeasurement kg = new QuantityMeasurement(Unit.KG, 1.0);
+           litre.addition(kg);
+       }catch (QuantityMeasurementException e){
+           Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.INVALID_UNIT_TYPE);
+           System.out.println(e.getMessage());
+       }
+
+    }
 }
