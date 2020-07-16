@@ -6,7 +6,7 @@ import com.bridgelabz.quantitymeasurement.utility.Unit;
 import java.util.Objects;
 
 
-public class QuantityMeasurement {
+public class QuantityMeasurement implements  IQuantityMeasurement{
     private Unit unit;
     private double value;
 
