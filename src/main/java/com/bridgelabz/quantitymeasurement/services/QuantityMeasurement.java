@@ -1,12 +1,11 @@
 package com.bridgelabz.quantitymeasurement.services;
 
 import com.bridgelabz.quantitymeasurement.exception.QuantityMeasurementException;
+import com.bridgelabz.quantitymeasurement.utility.Type;
 import com.bridgelabz.quantitymeasurement.utility.Unit;
 
-import java.util.Objects;
 
-
-public class QuantityMeasurement implements  IQuantityMeasurement{
+public class QuantityMeasurement implements IQuantityMeasurement {
     private Unit unit;
     private double value;
 
@@ -20,12 +19,11 @@ public class QuantityMeasurement implements  IQuantityMeasurement{
         if (value == null)
             throw new QuantityMeasurementException("Entered Null Value",
                     QuantityMeasurementException.ExceptionType.NULL_VALUE);
-        if (value < 0)
+        if ((value < 0) && (!unit.type.equals(Type.TEMPERATURE)))
             throw new QuantityMeasurementException("Entered Negative Value",
                     QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         this.unit = unit;
         if (unit.equals(Unit.FAHRENHEIT))
-
             this.value = (value - unit.unitConversion) * 5 / 9;
         else
             this.value = value * unit.unitConversion;
@@ -44,7 +42,7 @@ public class QuantityMeasurement implements  IQuantityMeasurement{
             return this.value + that.value;
         else
             throw new QuantityMeasurementException("Different measurement types"
-                                                        , QuantityMeasurementException.ExceptionType.INVALID_UNIT_TYPE);
+                    , QuantityMeasurementException.ExceptionType.INVALID_UNIT_TYPE);
     }
 
     @Override

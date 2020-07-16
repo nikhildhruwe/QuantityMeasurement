@@ -214,7 +214,6 @@ public class QuantityMeasurementTest {
         Assert.assertFalse(equals);
     }
 
-
     //3.5
     @Test
     public void given1CentimeterAnd1FeetValue_ShouldReturnFalse() throws QuantityMeasurementException {
@@ -354,15 +353,14 @@ public class QuantityMeasurementTest {
     }
 
     @Test
-    public void given1LitreAnd1Kg_WhenAdded_ShouldThrowException(){
-       try {
-           QuantityMeasurement litre = new QuantityMeasurement(Unit.LITRE, 1.0);
-           QuantityMeasurement kg = new QuantityMeasurement(Unit.KG, 1.0);
-           litre.addition(kg);
-       }catch (QuantityMeasurementException e){
-           Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.INVALID_UNIT_TYPE);
-           System.out.println(e.getMessage());
-       }
-
+    public void given1LitreAnd1Kg_WhenAdded_ShouldThrowException() {
+        try {
+            QuantityMeasurement litre = new QuantityMeasurement(Unit.LITRE, 1.0);
+            QuantityMeasurement kg = new QuantityMeasurement(Unit.KG, 1.0);
+            litre.addition(kg);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.INVALID_UNIT_TYPE);
+            System.out.println(e.getMessage());
+        }
     }
 }
