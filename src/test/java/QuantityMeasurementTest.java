@@ -382,4 +382,16 @@ public class QuantityMeasurementTest {
             System.out.println(e.getMessage());
         }
     }
+
+    @Test
+    public void given1CentimeterAnd1ML_WhenAdded_ShouldThrowException() {
+        try {
+            QuantityMeasurement litre = new QuantityMeasurement(Unit.CENTIMETER, 1.0);
+            QuantityMeasurement kg = new QuantityMeasurement(Unit.ML, 1.0);
+            litre.addition(kg);
+        } catch (QuantityMeasurementException e) {
+            Assert.assertEquals(e.type, QuantityMeasurementException.ExceptionType.INVALID_UNIT_TYPE);
+            System.out.println(e.getMessage());
+        }
+    }
 }

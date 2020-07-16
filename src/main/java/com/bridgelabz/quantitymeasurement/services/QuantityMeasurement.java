@@ -18,15 +18,15 @@ public class QuantityMeasurement implements IQuantityMeasurement {
     public QuantityMeasurement(Unit unit, Double value) throws QuantityMeasurementException {
         if (value == null)
             throw new QuantityMeasurementException("Entered Null Value",
-                    QuantityMeasurementException.ExceptionType.NULL_VALUE);
+                                                                 QuantityMeasurementException.ExceptionType.NULL_VALUE);
         if ((value < 0) && (!unit.type.equals(Type.TEMPERATURE)))
             throw new QuantityMeasurementException("Entered Negative Value",
-                    QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
-        this.unit = unit;
+                                                              QuantityMeasurementException.ExceptionType.NEGATIVE_VALUE);
         if (unit.equals(Unit.FAHRENHEIT))
             this.value = (value - unit.unitConversion) * 5 / 9;
         else
             this.value = value * unit.unitConversion;
+        this.unit = unit;
     }
 
     public QuantityMeasurement() {
