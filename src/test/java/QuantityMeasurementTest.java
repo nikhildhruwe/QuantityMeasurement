@@ -285,6 +285,14 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(litre, ml);
     }
 
+    //5.3
+    @Test
+    public void givenGallonAndLitresVolume_WhenImproper_ShouldNotBeEqual() throws QuantityMeasurementException {
+        QuantityMeasurement gallon = new QuantityMeasurement(Unit.GALLON, 1.0);
+        QuantityMeasurement litre = new QuantityMeasurement(Unit.LITRE, 1.0);
+        Assert.assertNotEquals(gallon, litre);
+    }
+
     //6.1
     @Test
     public void givenVolumesInGallonsAndLitres_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
@@ -326,6 +334,15 @@ public class QuantityMeasurementTest {
         QuantityMeasurement gram = new QuantityMeasurement(Unit.GRAM, 1000.0);
         double result = tonne.addition(gram);
         Assert.assertEquals(1001, result, 0.0);
+    }
+
+    //7.4
+    @Test
+    public void givenWeightInTonneAndGram_WhenCompared_ShouldNotBeEqual() throws QuantityMeasurementException {
+        QuantityMeasurement tonne = new QuantityMeasurement(Unit.TONNE, 1.0);
+        QuantityMeasurement gram = new QuantityMeasurement(Unit.GRAM, 1.0);
+        boolean equals = tonne.equals(gram);
+        Assert.assertFalse(equals);
     }
 
     //8
