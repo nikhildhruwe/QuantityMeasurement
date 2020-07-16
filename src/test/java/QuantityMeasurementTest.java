@@ -232,7 +232,7 @@ public class QuantityMeasurementTest {
         Assert.assertFalse(equals);
     }
 
-    //4.1
+    //4.1 *** Addition of length ****
     @Test
     public void given2InchAnd2Inch_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
         QuantityMeasurement inch1 = new QuantityMeasurement(Unit.INCH, 2.0);
@@ -268,7 +268,7 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(3, addition, 0.0);
     }
 
-    //5.1
+    //5.1 *** Test case for Volume. ***
     @Test
     public void givenGallonAndLitresVolume_WhenProper_ShouldBeEqual() throws QuantityMeasurementException {
         QuantityMeasurement gallon = new QuantityMeasurement(Unit.GALLON, 1.0);
@@ -292,6 +292,14 @@ public class QuantityMeasurementTest {
         Assert.assertNotEquals(gallon, litre);
     }
 
+    //5.4
+    @Test
+    public void given1MlAndLitresVolume_WhenCompared_ShouldNotBeEqual() throws QuantityMeasurementException {
+        QuantityMeasurement gallon = new QuantityMeasurement(Unit.ML, 1.0);
+        QuantityMeasurement litre = new QuantityMeasurement(Unit.LITRE, 1.0);
+        Assert.assertNotEquals(gallon, litre);
+    }
+
     //6.1
     @Test
     public void givenVolumesInGallonsAndLitres_WhenAdded_ShouldGiveCorrectResult() throws QuantityMeasurementException {
@@ -310,7 +318,16 @@ public class QuantityMeasurementTest {
         Assert.assertEquals(2, result, 0.0);
     }
 
-    //7.1
+    // 6.3
+    @Test
+    public void given1LitreAnd1Ml_WhenCompared_ShouldBeFalse() throws QuantityMeasurementException {
+        QuantityMeasurement litre = new QuantityMeasurement(Unit.LITRE, 1.0);
+        QuantityMeasurement ml = new QuantityMeasurement(Unit.ML, 1.0);
+        Assert.assertNotEquals(litre, ml);
+
+    }
+
+    //7.1  *** Test case for Weight ****
     @Test
     public void givenWeightInKGAndGram_WhenProper_ShouldBeEqual() throws QuantityMeasurementException {
         QuantityMeasurement kg = new QuantityMeasurement(Unit.KG, 1.0);
@@ -344,7 +361,9 @@ public class QuantityMeasurementTest {
         Assert.assertFalse(equals);
     }
 
-    //8
+
+
+    //8 - Temperature conversion
     @Test
     public void givenTemperatureInCelsiusAndFahrenheit_WhenProper_ShouldBeEqual() throws QuantityMeasurementException {
         QuantityMeasurement fahrenheit = new QuantityMeasurement(Unit.FAHRENHEIT, 212.0);
